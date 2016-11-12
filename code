@@ -1,0 +1,695 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include<time.h>
+int ladder(int d);
+
+char input[32];
+int snake(int e);
+int player1();  //b is variable
+int player2(); // c is variable
+int player3(); // g is variable
+int player4(); // f is variable
+int b=-1;
+int g=-1;
+int f=-1;
+int c=-1;
+int players;
+int d;
+int temp=0;
+	int main ()
+	{
+	/*rules*/
+	printf("Please choose the no. of players\n 1.Two players\n 2.Three players\n 3.Four players\n");
+		scanf("%d",&players);
+		switch(players)
+		{
+			case 1:d=1;
+			
+		      printf("...................................\n");
+					break;
+					
+			case 2:d=2;
+			printf("...................................\n");
+					break;
+					
+			case 3:d=3;
+					printf("...................................\n");
+					break;
+			default: printf("Wrong Selection\n");
+					main(); 
+		}
+		if(b==-1)
+	{
+	
+	player1();
+	
+    }
+	return 0;
+}
+int player1()
+{
+gets(input);
+				 system("cls");
+ 
+	int a;
+	int ctr;
+	if(b==-1&&temp!=0)printf("You didn't start at last turn\n");
+		printf("Player 1 turn\n");
+		if(b!=-1&&b!=0)printf("You were on %d\n",b);
+		if(b==0)printf("You were on start position\n");
+
+		printf("PLEASE PRESS ENTER TO ROLL THE DICE\n");
+		 gets(input);
+	srand ( time(NULL) );
+	
+for(ctr=0;ctr<=0;ctr++)
+    {
+    	a=rand() % 6 + 1;
+}
+		printf("Player 1 got %d\n",a);
+		/*NOT MORE THAN 100....................................................*/
+      
+	  
+	   if((a!=1)&&(b==100))
+			{
+				printf("Sorry you need 1\n");
+				player2();
+			}
+	  
+	  if((a==1)&&(b==100))
+			{
+				printf("Player 1 Won\n");
+				printf(".....................GAME END.............................\n");
+				exit(0);
+			
+				
+			}
+		if(a+b>=101)
+		{
+			printf("Sorry you only need %d not more than that\n",100-b);
+				printf("..................................................\n");
+			player2();
+		}
+	
+		
+		/*NORMAL THROW....................................*/
+		if((b>-1) &&(a<6))
+		{
+			b=a+b;
+					/*At the end*/
+		if(b==100)
+		{
+			printf("Now you need 1 to win the game\n");
+		}
+		printf("Player 1 you are on %d\n",b);
+		
+		 b=ladder(b);
+		b=snake(b);
+		
+			printf("..................................................\n");		
+			player2();
+			
+		}
+	/*START POINT...............................................................................*/	
+		if(b==-1)
+		{
+			if(a==1)
+			{
+				printf("Congrats You got to Start position\n");
+					printf("..................................................\n");
+
+		
+				b++;
+			
+				player2();
+			}
+			else
+		 {
+				printf("Player 1 did not begin\n");
+		
+				
+			printf("..................................................\n");
+		
+			player2();
+			
+			}
+		
+		}
+		/*EXTRA CHANCE......................................................................*/
+		if(a==6)
+		
+		
+		{
+		
+			printf("Player 1 got another chance\n");
+			b=b+a;
+			printf("Player 1 you are on %d\n",b);
+			printf("..................................................\n");
+			
+				player1();
+			
+			
+		}
+		
+		
+		
+	
+
+}
+
+int player2()
+{ 	gets(input);
+	system("cls");
+		int a;
+	int ctr;	
+	if(c==-1&&temp!=1){
+	printf("You didn't start at last turn\n");
+
+      }
+      temp++;
+		printf("Player 2 turn\n");
+		if(c!=-1&&c!=0)printf("You were on %d\n",c);
+		if(c==0)printf("You were on start position\n");
+		printf("PLEASE PRESS ENTER TO ROLL THE DICE\n");
+		 gets(input);
+	srand ( time(NULL) );
+	
+for(ctr=0;ctr<=0;ctr++)
+    {
+    	a=rand() % 6 + 1;
+    }
+		printf("Player 2 got %d\n",a);
+		/*NOT MORE THAN 100....................................................*/
+		 if((a!=1)&&(c==100))
+			{
+				printf("Sorry you need 1\n");
+				printf("..................\n");
+					if (d==1)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==2||d==3||d==3)
+				{
+				
+			player3();
+		
+		     }
+			}
+	  
+		if((a==1)&&(c==100))
+			{
+				printf("Player 2 Won\n");
+				printf(".....................GAME END.............................\n");
+				exit(0);
+			}
+		
+		if(a+c>=101)
+		{
+			printf("Sorry you only need %d not more than that\n",100-c);
+				printf("..................................................\n");
+				if (d==1)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==2||d==3)
+				{
+				
+			player3();
+		
+		     }
+		}
+		
+			
+	
+		
+		/*NORMAL THROW....................................*/
+		if((c>-1) &&(a<6))
+		{
+			c=a+c;
+					/*At the end*/
+		if(c==100)
+		{
+			printf("Now you need 1 to win the game\n");
+		}
+		 printf("Player 2 you are on %d\n",c);
+			c=ladder(c);
+			c=snake(c);		 
+			
+			printf("..................................................\n");
+			
+				if (d==1)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==2||d==3)
+				{
+				
+			player3();
+		
+		     }
+			
+		}
+	/*START POINT...............................................................................*/	
+		if(c==-1)
+		{
+			if(a==1)
+			{
+				printf("Congrats You got to Start position\n");
+					printf("..................................................\n");
+
+				
+				c++;
+					if (d==1)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==2||d==3)
+				{
+				
+			player3();
+		
+		     }
+			}
+			else
+			{
+				printf("Player 2 did not begin\n");
+		
+				printf("..................................................\n");
+				if (d==1)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==2||d==3)
+				{
+				
+			player3();
+		
+		     }
+			}
+		
+		}
+		/*EXTRA CHANCE......................................................................*/
+		if(a==6)
+		
+		
+		{
+		
+			printf("Player 2 got another chance\n");
+			c=c+a;
+			printf("Player 2 you are on %d\n",c);
+			printf("..................................................\n");
+		
+				player2();
+			
+			
+		}
+		
+	
+}
+int player3()
+{ 
+gets(input);
+	system("cls");
+		int a;
+	int ctr;	
+	if(g==-1&&temp!=2){
+	printf("You didn't start at last turn\n");}
+	temp++;
+		printf("Player 3 turn\n");
+		if(g!=-1&&g!=0)printf("You were on %d\n",g);
+		if(g==0)printf("You were on start position\n");
+		printf("PLEASE PRESS ENTER TO ROLL THE DICE\n");
+		 gets(input);
+	srand ( time(NULL) );
+	
+for(ctr=0;ctr<=0;ctr++)
+    {
+    	a=rand() % 6 + 1;
+      
+    }
+    printf("Player 3 got %d\n",a);
+		/*NOT MORE THAN 100....................................................*/
+		 if((a!=1)&&(g==100))
+			{
+				printf("Sorry you need 1\n");
+					if (d==2)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==3)
+				{
+				
+			player4();
+		
+		     }
+			}
+	  
+		if((a==1)&&(g==100))
+			{
+				printf("Player 3 Won\n");
+				printf(".....................GAME END.............................\n");
+				exit(0);
+			}
+		
+		if(a+g>=101)
+		{
+			printf("Sorry you only need %d not more than that\n",100-g);
+				printf("..................................................\n");
+				if (d==2)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==3)
+				{
+				
+			player4();
+		
+		     }
+		}
+		
+			
+	
+		
+		/*NORMAL THROW....................................*/
+		if((g>-1) &&(a<6))
+		{
+			g=a+g;
+					/*At the end*/
+		if(g==100)
+		{
+			printf("Now you need 1 to win the game\n");
+		}
+		 printf("Player 3 you are on %d\n",g);
+			g=ladder(g);
+			g=snake(g);		 
+			
+			printf("..................................................\n");
+			
+				if (d==2)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==3)
+				{
+				
+			player4();
+		
+		     }
+			
+		}
+	/*START POINT...............................................................................*/	
+		if(g==-1)
+		{
+			if(a==1)
+			{
+				printf("Congrats You got to Start position\n");
+					printf("..................................................\n");
+
+				
+				g++;
+					if (d==2)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==3)
+				{
+				
+			player4();
+		
+		     }
+			}
+			else
+			{
+				printf("Player 3 did not begin\n");
+		
+				printf("..................................................\n");
+				if (d==2)
+				{
+				
+			player1();
+		
+		     }
+		     	if (d==3)
+				{
+				
+			player4();
+		
+		     }
+			}
+		
+		}
+		/*EXTRA CHANCE......................................................................*/
+		if(a==6)
+		
+		
+		{
+		
+			printf("Player 3 got another chance\n");
+			g=g+a;
+			printf("Player 3 you are on %d\n",g);
+			printf("..................................................\n");
+		
+				player3();
+			
+			
+			
+		}
+		
+	
+}
+int player4()
+{
+	gets(input);
+				 system("cls");
+	int a;
+	int ctr;	
+	if(f==-1&&temp!=3){
+	printf("You didn't start at last turn\n");
+	temp++;}
+		printf("Player 4 turn\n");
+		if(f!=-1&&f!=0)printf("You were on %d\n",f);
+		if(f==0)printf("You were on start position\n");
+		printf("PLEASE PRESS ENTER TO ROLL THE DICE\n");
+		 gets(input);
+	srand ( time(NULL) );
+	
+for(ctr=0;ctr<=0;ctr++)
+    {
+    	a=rand() % 6 + 1;
+    }
+		printf("Player 4 got %d\n",a);
+		/*NOT MORE THAN 100....................................................*/
+      
+	  
+	   if((a!=1)&&(f==100))
+			{
+				printf("Sorry you need 1\n");
+				player1();
+			}
+	  
+	  if((a==1)&&(f==100))
+			{
+				printf("Player 4 Won\n");
+				printf(".....................GAME END.............................\n");
+				exit(0);
+			
+				
+			}
+		if(a+f>=101)
+		{
+			printf("Sorry you only need %d not more than that\n",100-f);
+				printf("..................................................\n");
+			player1();
+		}
+
+		if((a>6)&&(a<1))
+		{
+			printf("Have you gone mad");
+			player4();
+		}
+			
+	
+		
+		/*NORMAL THROW....................................*/
+		if((f>-1) &&(a<6))
+		{
+			f=a+f;
+					/*At the end*/
+		if(f==100)
+		{
+			printf("Now you need 1 to win the game\n");
+		}
+		printf("Player 4 you are on %d\n",f);
+		
+		 f=ladder(f);
+		f=snake(f);
+		
+			printf("..................................................\n");
+			
+			player1();
+			
+		}
+	/*START POINT...............................................................................*/	
+		if(f==-1)
+		{
+			if(a==1)
+			{
+				printf("Congrats You got to Start position\n");
+					printf("..................................................\n");
+
+				
+				f++;
+				player1();
+			}
+			else
+			{
+				printf("Player 4 did not begin\n");
+		
+				printf("..................................................\n");
+			player1();
+			
+			}
+		
+		}
+		/*EXTRA CHANCE......................................................................*/
+		if(a==6)
+		
+		
+		{
+		
+			printf("Player 4 got another chance\n");
+			f=f+a;
+			printf("Player 4 you are on %d\n",f);
+			printf("..................................................\n");
+				player4();
+			
+			
+		}
+		
+		
+		
+	
+
+}
+
+int ladder(int d)
+{
+				/*LADDER1.............................................................................*/
+			if(d==3)
+			{
+				d=51;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			
+			/*LADDER2.................................................................................*/
+			if(d==6)
+			{
+				d=27;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			/*LADDER3.................................................................................*/
+			if(d==20)
+			{
+				d=70;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			/*LADDER4.................................................................................*/
+			if(d==36)
+			{
+				d=55;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			/*LADDER5.................................................................................*/
+			if(d==63)
+			{
+				d=95;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			/*LADDER6.................................................................................*/
+			if(d==68)
+			{
+				d=98;
+				printf("Wow you climbed to %d\n",d);
+				
+			}
+			return d;
+
+}
+int snake(int e)
+{
+	/*SNAKE1.................................................................................*/
+			if(e==34)
+			{
+				e=1;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE2.................................................................................*/
+			if(e==25)
+			{
+				e=5;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE3.................................................................................*/
+			if(e==47)
+			{
+				e=19;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE4.................................................................................*/
+			if(e==65)
+			{
+				e=52;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE5.................................................................................*/
+			if(e==99)
+			{
+				e=69;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE6.................................................................................*/
+			if(e==87)
+			{
+				e=57;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+				
+			}
+			/*SNAKE7.................................................................................*/
+			if(e==91)
+			{
+				e=61;
+				printf("Sorry You are bitten by a snake,You are now on %d\n",e);
+		
+				
+		}
+		return e;
+}
